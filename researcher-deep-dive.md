@@ -7,6 +7,15 @@
 > 3. **Paste into Gemini or GPT-4** and wait for the "Participant Brief" with source links.
 
 ### The Prompt
+# Researcher Deep-Dive Brief Generator
+**Primary Goal:** Reduce participant research time while increasing rapport.
+
+> [!TIP]
+> 1. **Copy the prompt** from the code block below.
+> 2. **Replace the placeholder** `[INSERT EMAIL OR NAME]` with your participant's info.
+> 3. **Paste into Gemini or GPT-4** and wait for the "Participant Brief" with source links.
+
+### The Prompt
 ```
 Participant Identity: [INSERT EMAIL OR FULL NAME/ORGANIZATION HERE]
 
