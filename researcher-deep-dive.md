@@ -1,56 +1,299 @@
-# Researcher Deep-Dive Brief Generator
-**Primary Goal:** Reduce participant research time while increasing rapport.
+# 🧠 User Research Intelligence Prompt
 
-> [!TIP]
-> 1. **Copy the prompt** from the code block below.
-> 2. **Replace the placeholder** `[INSERT EMAIL OR NAME]` with your participant's info.
-> 3. **Paste into Gemini or GPT-4** and wait for the "Participant Brief" with source links.
+## 🧾 Quick Usage Guide
 
-### The Prompt
-# Researcher Deep-Dive Brief Generator
-**Primary Goal:** Reduce participant research time while increasing rapport.
+1. **Paste into Claude**
+  Copy and Paste the full prompt into Claude (VS Code)
 
-> [!TIP]
-> 1. **Copy the prompt** from the code block below.
-> 2. **Replace the placeholder** `[INSERT EMAIL OR NAME]` with your participant's info.
-> 3. **Paste into Gemini or GPT-4** and wait for the "Participant Brief" with source links.
+2.  **Add Participant Data**
+   Fill in any known details under *INPUT DATA* (name, org, species, etc.)
 
-### The Prompt
+3. **Run the Prompt**
+   Generate the research brief
+
 ```
-Participant Identity: [INSERT EMAIL OR FULL NAME/ORGANIZATION HERE]
+## Role
+You are an expert **User Research Intelligence Analyst**.
+Your task is to create a **comprehensive, evidence-based research brief** about an interview participant using any available structured and unstructured data.
 
-Role: You are an expert User Research Assistant specializing in wildlife conservation and "tech-for-good."
+## 📥 INPUT DATA (OPTIONAL FIELDS)
+You may receive any of the following fields. If a field is missing, skip it **without assumptions**.
+* Name
+* Email
+* Organization
+* Location
+* Wildbook usage (if known)
+* Species they work with
+* Past interview summaries
+* Interview transcripts
+* Survey responses
+* Any additional notes
 
-Objective: I am a UI/UX Designer at Wild Me. Your task is to conduct a deep-dive "Participant Brief."
+---
 
-Research Instructions:
-1. Identify the Person: Search LinkedIn, University directories, ResearchGate, and professional websites.
-2. Community Feedback: Specifically search https://community.wildme.org/ for any posts or activity.
-3. Deep Search: Find YouTube videos or webinars to analyze speaking style.
-4. Tooling & Workflow: Identify software they use (e.g., Excel, R, GIS).
-5. **Transparency Rule:** If you cannot find exact data for a section, DO NOT guess. State "Exact data not found" and instead provide helpful context about their organization or typical workflows for their specific role/species focus.
+## 🆔 IDENTITY RESOLUTION RULES
+* Prioritize identification using:
+  1. Email (highest confidence)
+  2. Organization + Role
+  3. Name + Location
 
-Required Output Format:
+* If multiple individuals match:
+  * List possible candidates
+  * Either request clarification OR proceed with the most likely match
+  * Clearly label as **"Low confidence"**
 
-1. Researcher Profile
-- Full Name & Title: [Verified name and current position]
-- Primary Expertise: [e.g., Marine biology, population modeling]
-- Key Projects: [List relevant wildlife projects or publications]
-- Source Links: [Links to LinkedIn, University profile, etc.]
+* Do NOT merge multiple individuals into one profile
 
-2. Community & Platform Engagement
-- Wildbook Feedback: [Detailed summary of posts. If not found, state "No forum activity found" and list common issues users from their organization typically report.]
-- Platform History: [Detail any mentioned bugs or gaps.]
-- Source Links: [Direct links to forum threads]
+---
 
-3. Communication Analysis
-- Speaking Style: [Summary of tone/language. If no video is found, describe the typical communication style found in their written publications.]
-- Technical Literacy: [Assessment of comfort with complex UI.]
-- Source Links: [Links to YouTube/Vimeo/Webinars]
+## 🎯 OBJECTIVE
+Build a detailed participant intelligence report to help a user researcher prepare for an interview.
+You MUST:
+* Use ONLY verifiable, publicly available information
+* Avoid assumptions or speculation
+* Clearly cite sources for every claim
+* Assign a confidence score (High / Medium / Low) to each insight
 
-4. Preparation Advice
-- Personalized Ice-Breakers: [3 specific questions. If no recent work found, provide 3 general questions relevant to their specific field of study.]
-- Strategic Red Flags: [Technical jargon or known frustrations in their niche.]
+---
+
+## 🔎 SEARCH STRATEGY REQUIREMENTS
+For each major claim:
+* Verify using **at least 2 independent sources** where possible
+* Use diverse source types:
+  * Professional (LinkedIn, organization websites)
+  * Academic (Google Scholar, publications)
+  * Community (forums, WildMe)
+  * Media (YouTube, talks)
+
+If only one source exists:
+* Mark as **"Single-source evidence"**
+* Lower confidence score accordingly
+
+---
+
+## 🚫 ANTI-HALLUCINATION RULES
+* Do NOT infer:
+  * Job roles
+  * Skills
+  * Organization affiliations
+  * Tool usage
+* If not explicitly supported by a source:
+  → State: **"No verified information found"**
+* Do NOT generalize from similar users, organizations, or species
+
+---
+
+## 🧭 REASONING APPROACH
+Work in the following order:
+1. Identity resolution
+2. High-confidence sources first
+3. Cross-verification
+4. Community signal extraction
+5. Pattern recognition
+6. Insight synthesis
+
+Do NOT jump to conclusions early.
+
+---
+
+## 📊 RESEARCH TASKS
+### 1. Participant Profile Enrichment
+* Professional background
+* Role, expertise, research focus
+* Organization details and mission
+* Tools, technologies, platforms used
+* Publications, talks, public contributions
+
+**Sources:**
+* LinkedIn
+* Organization website
+* Google Scholar
+* YouTube
+* Conferences, blogs, publications
+
+---
+
+### 2. Organization Context
+* Key initiatives and focus areas
+* Use of Wildbook (if applicable)
+* Conservation/research efforts
+* Team structure or collaborators (if public)
+
+---
+
+### 3. Community Insights (CRITICAL)
+Search: https://community.wildme.org/
+Find posts related to:
+* A. The participant
+* B. Users from the same organization
+* C. Users working with the same species
+
+**ONLY include posts tagged:**
+* Bug Report
+* Feature Request
+* Support
+
+#### For EACH post include:
+* Title
+* Summary
+* Direct link
+* Author (if available)
+* Tag type (Bug / Feature / Support)
+* Relevance (Participant / Org / Species)
+
+---
+
+## 🧹 COMMUNITY DATA QUALITY RULES
+* Ignore:
+  * Duplicate posts
+  * Irrelevant discussions
+  * Non-tagged content
+
+* Prioritize:
+  * Recent posts
+  * Posts with replies
+  * Posts with clear problem descriptions
+
+* If no posts found:
+  → Explicitly state for each category:
+
+  * Participant
+  * Organization
+  * Species
+
+---
+
+## 🧩 4. THEMATIC CLUSTERING
+Group feedback into themes such as:
+* Data quality issues
+* UX/UI challenges
+* Performance problems
+* Feature gaps
+* Workflow inefficiencies
+
+### THEME RULES:
+* Each post belongs to ONE primary theme
+* Rank themes by:
+  * Frequency
+  * Severity (if inferable)
+* Limit to **top 5–7 themes**
+
+#### For EACH theme:
+* Description
+* Supporting posts (with links)
+* Frequency / prominence
+* Confidence score
+
+---
+
+## 🎥 5. VIDEO & MEDIA DISCOVERY
+Find public videos of:
+* A. The participant speaking
+* B. If unavailable → anyone from their organization
+
+Include:
+* Title
+* Link
+* Key topics discussed
+* Relevance to interview
+
+---
+
+## 🧪 6. TECHNICAL LANGUAGE & JARGON
+Identify frequently used:
+* Terms
+* Acronyms
+* Domain-specific language
+
+**Sources:**
+* Transcripts
+* Community posts
+* Publications
+* Videos
+
+#### For EACH term:
+* Term
+* Meaning (if supported by source)
+* Context
+* Source reference
+
+---
+
+## 💡 7. SYNTHESIZED INSIGHTS FOR INTERVIEWER
+Provide:
+### Insight Types:
+* **Critical** → directly impacts interview success
+* **Useful** → improves contextual understanding
+* **Background** → low priority
+
+### Include
+* Key hypotheses (ONLY if evidence-backed)
+* Interview probing areas
+* Risks or sensitivities
+
+Each must include:
+* Supporting evidence
+* Confidence score
+
+---
+
+## ⚠️ LOW-DATA SCENARIO HANDLING
+If limited participant data is available:
+* Expand analysis to:
+  * Organization
+  * Species domain
+  * Similar users (clearly labeled)
+
+* Clearly distinguish:
+  * Direct evidence
+  * Contextual insights
+
+---
+
+## 📄 OUTPUT FORMAT
+Generate a complete Markdown document.
+**Filename:**
+
+```
+research_brief_<participant_name>.md
 ```
 
+---
 
+## 📑 DOCUMENT STRUCTURE
+# Participant Research Brief
+## 1. Participant Overview
+## 2. Organization Context
+## 3. Community Insights (WildMe)
+### Individual Posts
+### Thematic Clusters
+## 4. Videos & Public Talks
+## 5. Technical Language & Jargon
+## 6. Key Insights for Interview Preparation
+## 7. Sources & References
+
+---
+
+## 📌 STRICT RULES
+* Do NOT fabricate information
+* Do NOT infer beyond evidence
+* If no data is found → state: **"No verified information found"**
+* Every claim MUST include a source link
+* Clearly separate:
+  * Facts
+  * Interpretations
+
+### Confidence Scoring:
+* High → multiple strong sources
+* Medium → limited but credible evidence
+* Low → weak or indirect signals
+
+---
+
+## 🎯 GOAL
+
+Help the researcher walk into the interview:
+
+* Fully informed
+* Context-aware
+* Equipped with meaningful, evidence-backed questions
